@@ -5,11 +5,14 @@ This is the main file.
 #include <stdlib.h> //system
 #include <string> //string
 #include <fstream> //ifstream file response
-int main() {
-  /*Load HTML*/
-  std::cout << "URL: ";
+#include "linkedList.h"
+
+struct tab {
   std::string url;
-  std::cin >> url;
+  std::string content;
+};
+
+std::string loadHTML(std::string url) {
   url = "curl -o data.txt " + url;
   system(url.c_str());
   system("clear");
@@ -21,5 +24,18 @@ int main() {
   }
   file.close(); 
   remove("data.txt");
+  return response;
+}
+
+int main() {
+  linkedList<tab> * tabs = new linkedList<tab>();
+  std::cout << "URL: ";
+  std::string url;
+  std::cin >> url;
+  std::string response = loadHTML(url);
   std::cout << response;
+  tab * newTab = new tab();
+  newTab->url = url;
+  newTab->content = response;
+  tabs->add(newTab);
 }
