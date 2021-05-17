@@ -6,6 +6,7 @@ This is the main file.
 #include <string> //string
 #include <fstream> //ifstream file response
 #include "linkedList.h"
+#include "bookmark.h"
 
 struct tab {
   std::string url;
@@ -38,4 +39,8 @@ int main() {
   newTab->url = url;
   newTab->content = response;
   tabs->add(newTab);
+  
+  bookmarkTrees bookmarks;
+  bookmarks.insert(bookmarks.root, url);
+  bookmarks.remove(url);
 }
