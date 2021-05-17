@@ -1,6 +1,11 @@
 #ifndef BSTREE_H
 #define BSTREE_H
 
+#include <vector>
+#include <iostream>
+#include <string>
+using namespace std;
+
 struct node
 {
     int key_value;
@@ -14,11 +19,11 @@ public:
 	node* root;
 	vector<string> urlVec;
 	int vectorInd = 0;
-	int urlToBookmarkIndex(string url);
-	string indexToUrl(int i);
-        void find(int, node **, node **);    
+	int urlToBookmarkIndex(string);
+	string indexToUrl(int);
+        void find(int, node **, string);    
         void insert(node *, node *);
-        void remove(int);
+        void remove(string);
         void case_0(node *,node *);
         void case_1(node *,node *);
         void case_2(node *,node *);
