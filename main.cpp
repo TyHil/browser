@@ -44,9 +44,9 @@ void bookmarkUI() {
   bookmarks.insert(bookmarks.root, url);
   bookmarks.remove(url);
 }
-
 int main() {
   linkedList<tab> * tabs = new linkedList<tab>();
+  int tabIndex;
   std::cout << "Welcome to B.R.O.W.S.E.R!:\nType 'search' to load a url\n Type 'newTab' to create a new tab\n   (Type 'back' to go back one tab)\n   (Type 'forward' to go forward one tab)\n   (type 'close' to close a tab)\nType 'bookmark' to create a new bookmark\nType 'exit' to end the program";
   std::string command;
   std::cin >> command;
@@ -55,7 +55,7 @@ int main() {
     if (command.compare("search") == 0) {
       searchUI();
     }
-    if (command.compare("newTab")==0){
+    else if (command.compare("newTab")==0){
       tab * newTab = new tab();
       std::string url;
       std::string response;
@@ -63,13 +63,28 @@ int main() {
       newTab->url = url;
       newTab->content = response;
       tabs->add(newTab);
+      tabIndex++;
+    }
+    if (command.compare("back") == 0) {
+      tabIndex--;
+    }
+    if (command.compare("forward")==0) {
+      tabIndex++;
+    }
+    if (command.compare("close")==0) {
+      tabs->remove(tabIndex);
+      tabIndex--;
+      std::cout << "Bothersome tab has been taken care of sir";
     }
     if (command.compare("bookmark")==0) {
       bookmarkUI();
     }
-    if (command.compare("exit")==0) {
+    else if (command.compare("exit")==0) {
       std::cout << "Goodbye. My brief life will now end. :(";
       running = false;
+    }
+    else {
+      std::cout << "Invalid input, try again: ";
     }
     std::cin >> command;
   }
