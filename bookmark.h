@@ -8,10 +8,14 @@ struct node
     struct node *p_right;
 };
 
-class BST
+class bookmarkTrees
 {
 public:
-		node* root;
+	node* root;
+	vector<string> urlVec;
+	int vectorInd = 0;
+	int urlToBookmarkIndex(string url);
+	string indexToUrl(int i);
         void find(int, node **, node **);    
         void insert(node *, node *);
         void remove(int);
