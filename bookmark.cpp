@@ -4,7 +4,7 @@
 
 using namespace std;
 
-void BST::find(int item_key, node **prnt, node **loc)
+void bookmarkTrees::find(int item_key, node **prnt, node **loc)
 {
     node *ptr, *ptrsave;
     if (root == NULL)
@@ -43,7 +43,7 @@ void BST::find(int item_key, node **prnt, node **loc)
 }
 
 // newnode's key is the index in the array of URLs
-void BST::insert(node *tree, node *newnode)
+void bookmarkTrees::insert(node *tree, node *newnode)
 {
     if(root == nullptr)
     {
@@ -80,7 +80,7 @@ void BST::insert(node *tree, node *newnode)
     }
 }
 
-void BST::remove(int item)
+void bookmarkTrees::remove(int item)
 {
     node *parent, *location;
     if (root == NULL)
@@ -109,7 +109,7 @@ void BST::remove(int item)
 }
 
 // Case 0: node is removed, no other updates
-void BST::case_0(node *prnt, node *loc )
+void bookmarkTrees::case_0(node *prnt, node *loc )
 {
     if(loc == root)
     {
@@ -128,7 +128,7 @@ void BST::case_0(node *prnt, node *loc )
 }
 
 // Case 1: one child so promote the child and replace the node to delete
-void BST::case_1(node *prnt, node *loc)
+void bookmarkTrees::case_1(node *prnt, node *loc)
 {
     node *child;
     if(loc->p_left != nullptr){
@@ -154,7 +154,7 @@ void BST::case_1(node *prnt, node *loc)
 }
 
 // Case 2: find and promote a successor or predecessor
-void BST::case_2(node *prnt, node *loc)
+void bookmarkTrees::case_2(node *prnt, node *loc)
 {
     node* successor;
     node* prnt_s;
@@ -189,7 +189,7 @@ void BST::case_2(node *prnt, node *loc)
 }
 
 /*
-void BST::display(node *ptr, int level)
+void bookmarkTrees::display(node *ptr, int level)
 {
     int i;
     if (ptr != NULL)
