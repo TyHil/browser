@@ -51,7 +51,7 @@ int main() {
   std::string command;
   std::cin >> command;
   bool running = true;
-  while (running) {}
+  while (running) {
     if (command.compare("search") == 0) {
       searchUI();
     }
