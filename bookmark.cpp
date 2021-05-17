@@ -4,6 +4,16 @@
 
 using namespace std;
 
+int bookmarkTrees::urlToBookmarkIndex(string url){
+	urlVec[vectorInd] = url;
+	vectorInd++;
+	return vectorInd - 1;
+}
+
+string bookmarkTrees::indexToUrl(int i){
+	return urlVec[i];
+}
+
 void bookmarkTrees::find(int item_key, node **prnt, node **loc)
 {
     node *ptr, *ptrsave;
@@ -43,8 +53,11 @@ void bookmarkTrees::find(int item_key, node **prnt, node **loc)
 }
 
 // newnode's key is the index in the array of URLs
-void bookmarkTrees::insert(node *tree, node *newnode)
+void bookmarkTrees::insert(node *tree, string urlToInsert)
 {
+	node *newnode;
+	int newnode_key = urlToBookmarkIndex(urlToInsert);
+	newnode->key_value = newnode_key;
     if(root == nullptr)
     {
         root = newnode;
@@ -80,8 +93,9 @@ void bookmarkTrees::insert(node *tree, node *newnode)
     }
 }
 
-void bookmarkTrees::remove(int item)
+void bookmarkTrees::remove(string urlToRemove)
 {
+	int item = urlToBookmarkIndex(urlToRemove);
     node *parent, *location;
     if (root == NULL)
     {
