@@ -6,28 +6,28 @@
 #include <string>
 using namespace std;
 
-template <typename T> struct Node
+struct Node
 {
     int key_value;
-    struct Node<T> *p_left;
-    struct Node<T> *p_right;
+    struct Node *p_left;
+    struct Node *p_right;
 };
 
-template <typename T> class bookmarkTrees
+class bookmarkTrees
 {
 public:
-	Node<T>* root;
+	Node* root;
 	vector<string> urlVec;
 	int vectorInd = 0;
 	int urlToBookmarkIndex(string);
 	string indexToUrl(int);
-        void find(int, T **, T **);    
-        void insert(T *, int);
+        void find(int, Node **, Node **);    
+        void insert(Node *, int);
         void remove(string);
-        void case_0(T *, T *);
-        void case_1(T *, T *);
-        void case_2(T *, T *);
-        BST()
+        void case_0(Node *, Node *);
+        void case_1(Node *, Node *);
+        void case_2(Node *, Node *);
+        bookmarkTrees()
         {
             root = NULL;
         }
