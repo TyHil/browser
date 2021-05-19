@@ -7,19 +7,19 @@
 
 using namespace std;
 
-template <typename T> int bookmarkTrees<T>::urlToBookmarkIndex(string url){
+int bookmarkTrees::urlToBookmarkIndex(string url){
 	urlVec[vectorInd] = url;
 	vectorInd++;
 	return vectorInd - 1;
 }
 
-template <typename T> string bookmarkTrees<T>::indexToUrl(int i){
+string bookmarkTrees::indexToUrl(int i){
 	return urlVec[i];
 }
 
-template <typename T> void bookmarkTrees<T>::find(int item_key, T **prnt, T **loc)
+void bookmarkTrees::find(int item_key, Node **prnt, Node **loc)
 {
-    Node<T> *ptr, *ptrsave;
+    Node *ptr, *ptrsave;
     if (root == NULL)
     {
         *loc = NULL;
@@ -56,9 +56,9 @@ template <typename T> void bookmarkTrees<T>::find(int item_key, T **prnt, T **lo
 }
 
 // newnode's key is the index in the array of URLs
-template <typename T> void bookmarkTrees<T>::insert(T *tree, int key)
+void bookmarkTrees::insert(Node *tree, int key)
 {
-	Node<T> *newnode;
+	Node *newnode;
 	//int newnode_key = urlToBookmarkIndex(urlToInsert);
 	newnode->key_value = key;
     if(root == nullptr)
@@ -96,10 +96,10 @@ template <typename T> void bookmarkTrees<T>::insert(T *tree, int key)
     }
 }
 
-template <typename T> void bookmarkTrees<T>::remove(string urlToRemove)
+void bookmarkTrees::remove(string urlToRemove)
 {
 	int item = urlToBookmarkIndex(urlToRemove);
-    Node<T> *parent, *location;
+    Node *parent, *location;
     if (root == NULL)
     {
         cout<<"Tree empty"<<endl;
@@ -126,7 +126,7 @@ template <typename T> void bookmarkTrees<T>::remove(string urlToRemove)
 }
 
 // Case 0: node is removed, no other updates
-template <typename T> void bookmarkTrees<T>::case_0(T *prnt, T *loc )
+void bookmarkTrees::case_0(Node *prnt, Node *loc )
 {
     if(loc == root)
     {
@@ -145,9 +145,9 @@ template <typename T> void bookmarkTrees<T>::case_0(T *prnt, T *loc )
 }
 
 // Case 1: one child so promote the child and replace the node to delete
-template <typename T> void bookmarkTrees<T>::case_1(T *prnt, T *loc)
+void bookmarkTrees::case_1(Node *prnt, Node *loc)
 {
-    Node<T> *child;
+    Node *child;
     if(loc->p_left != nullptr){
       child = loc->p_left;
     }
@@ -171,10 +171,10 @@ template <typename T> void bookmarkTrees<T>::case_1(T *prnt, T *loc)
 }
 
 // Case 2: find and promote a successor or predecessor
-template <typename T> void bookmarkTrees<T>::case_2(T *prnt, T *loc)
+void bookmarkTrees::case_2(Node *prnt, Node *loc)
 {
-    Node<T>* successor;
-    Node<T>* prnt_s;
+    Node* successor;
+    Node* prnt_s;
     successor = loc->p_right;
     prnt_s = loc;
     while(successor != nullptr && successor->p_left != nullptr){
