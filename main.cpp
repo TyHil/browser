@@ -13,12 +13,6 @@ struct tab {
   std::string content;
 };
 
-struct treeNode{
-	int key;
-	struct treeNode *p_l;
-	struct treeNode *p_r;
-}
-
 std::string loadHTML(std::string url) {
   url = "curl -o data.txt " + url;
   system(url.c_str());
@@ -42,17 +36,16 @@ void searchUI() {
   std::cout << response;
 }
 
-void bookmarkUI() {
+/*void bookmarkUI() {
   std::string url;
   std::cout << "Enter Bookmark URL: ";
   std::cin >> url;
-  bookmarkTrees<treeNode> * bookmarks;
+  //bookmarkTrees<Node> * bookmarks;
   int bookmarkInd = bookmarks->urlToBookmarkIndex(url);
-  //treeNode* newBookmark;
-  //newBookmark->key = bookmarkInd;
   bookmarks->insert(bookmarks->root, bookmarkInd);
   bookmarks->remove(url);
-}
+}*/
+
 int main() {
   linkedList<tab> * tabs = new linkedList<tab>();
   int tabIndex;
@@ -86,7 +79,13 @@ int main() {
       std::cout << "Bothersome tab has been taken care of sir";
     }
     if (command.compare("bookmark")==0) {
-      bookmarkUI();
+	  std::string url;
+	  std::cout << "Enter Bookmark URL: ";
+	  std::cin >> url;
+	  bookmarkTrees * bookmarks = new bookmarkTrees();
+	  int bookmarkInd = bookmarks->urlToBookmarkIndex(url);
+	  bookmarks->insert(bookmarks->root, bookmarkInd);
+	  bookmarks->remove(url);
     }
     else if (command.compare("exit")==0) {
       std::cout << "Goodbye. My brief life will now end. :(";
