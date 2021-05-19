@@ -13,6 +13,12 @@ struct tab {
   std::string content;
 };
 
+struct treeNode{
+	int key;
+	struct treeNode *p_l;
+	struct treeNode *p_r;
+}
+
 std::string loadHTML(std::string url) {
   url = "curl -o data.txt " + url;
   system(url.c_str());
@@ -40,9 +46,12 @@ void bookmarkUI() {
   std::string url;
   std::cout << "Enter Bookmark URL: ";
   std::cin >> url;
-  bookmarkTrees bookmarks;
-  bookmarks.insert(bookmarks.root, url);
-  bookmarks.remove(url);
+  bookmarkTrees<treeNode> * bookmarks;
+  int bookmarkInd = bookmarks->urlToBookmarkIndex(url);
+  //treeNode* newBookmark;
+  //newBookmark->key = bookmarkInd;
+  bookmarks->insert(bookmarks->root, bookmarkInd);
+  bookmarks->remove(url);
 }
 int main() {
   linkedList<tab> * tabs = new linkedList<tab>();
