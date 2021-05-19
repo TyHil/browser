@@ -1,33 +1,32 @@
-#ifndef BSTREE_H
-#define BSTREE_H
+#ifndef BOOKMARK_H
+#define BOOKMARK_H
 
 #include <vector>
 #include <iostream>
 #include <string>
 using namespace std;
 
-struct node
+template <typename T> struct Node
 {
     int key_value;
-    struct node *p_left;
-    struct node *p_right;
+    struct Node<T> *p_left;
+    struct Node<T> *p_right;
 };
 
-class bookmarkTrees
+template <typename T> class bookmarkTrees
 {
 public:
-	node* root;
+	Node<T>* root;
 	vector<string> urlVec;
 	int vectorInd = 0;
 	int urlToBookmarkIndex(string);
 	string indexToUrl(int);
-        void find(int, node **, string);    
-        void insert(node *, node *);
+        void find(int, T **, T **);    
+        void insert(T *, int);
         void remove(string);
-        void case_0(node *,node *);
-        void case_1(node *,node *);
-        void case_2(node *,node *);
-        // void display(node *, int);
+        void case_0(T *, T *);
+        void case_1(T *, T *);
+        void case_2(T *, T *);
         BST()
         {
             root = NULL;
