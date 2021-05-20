@@ -5,8 +5,8 @@ This is the main file.
 #include <stdlib.h> //system
 #include <string> //string
 #include <fstream> //ifstream file response
-#include "linkedList.h"
 #include "bookmark.h"
+#include "generalTree.h"
 
 struct tab {
   std::string url;
